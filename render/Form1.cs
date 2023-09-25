@@ -18,9 +18,11 @@ namespace render
         public Form1()
         {
             InitializeComponent();
+            transform = Matrix.Identity4x4;
         }
 
         STL model;
+        Matrix transform;
 
         private void Render(object sender, PaintEventArgs e)
         {
@@ -31,15 +33,19 @@ namespace render
             Graphics g = e.Graphics;
             Vector3 centerOffset = new Vector3(g.ClipBounds.Width, g.ClipBounds.Height, 0) * 0.5f;
 
+            Point[] pointBuffer = new Point[3];
+
             if (wireframeCheckBox.Checked)
             {
                 Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
                 foreach (Tris tris in model.tris)
                 {
 
-                    g.DrawPolygon(whitePen, tris.vertex.Select(x => (x * 100f + centerOffset).ToPoint()).ToArray<Point>());
+                    pointBuffer[0] = (transform * tris.vertex[0] * 100f + centerOffset).ToPoint();
+                    pointBuffer[1] = (transform * tris.vertex[1] * 100f + centerOffset).ToPoint();
+                    pointBuffer[2] = (transform * tris.vertex[2] * 100f + centerOffset).ToPoint();
 
-
+                    g.DrawPolygon(whitePen, pointBuffer);
                 }
                 whitePen.Dispose();
             }
@@ -47,17 +53,16 @@ namespace render
             {
                 Vector3 cameraNormal = new Vector3(0, 0, 1);
                 SolidBrush sb = new SolidBrush(Color.White);
-                Point[] pointBuffer = new Point[3];
                 foreach (Tris tris in model.tris)
                 {
-                    float diff = cameraNormal * tris.normal;
+                    float diff = cameraNormal * (transform * tris.normal).Normalize();
                     if (diff < 0) continue;
                     Vector3 color = Vector3.One * diff * 255;
                     sb.Color = Color.FromArgb(255, (int)color.x, (int)color.y, (int)color.z);
                     
-                    pointBuffer[0] = (tris.vertex[0] * 100f + centerOffset).ToPoint();
-                    pointBuffer[1] = (tris.vertex[1] * 100f + centerOffset).ToPoint();
-                    pointBuffer[2] = (tris.vertex[2] * 100f + centerOffset).ToPoint();
+                    pointBuffer[0] = (transform * tris.vertex[0] * 100f + centerOffset).ToPoint();
+                    pointBuffer[1] = (transform * tris.vertex[1] * 100f + centerOffset).ToPoint();
+                    pointBuffer[2] = (transform * tris.vertex[2] * 100f + centerOffset).ToPoint();
 
                     g.FillPolygon(sb, pointBuffer);
                 }
@@ -86,6 +91,43 @@ namespace render
             }
         }
 
+        public void UpdateMatriciesFromInput()
+        {
+            Matrix translation = Matrix.Identity4x4;
+            translation.value[0, 3] = float.Parse(pX.Text);
+            translation.value[1, 3] = float.Parse(pY.Text);
+            translation.value[2, 3] = float.Parse(pZ.Text);
+
+            Matrix scale = Matrix.Identity4x4;
+            scale.value[0, 0] = float.Parse(sX.Text);
+            scale.value[1, 1] = float.Parse(sY.Text);
+            scale.value[2, 2] = float.Parse(sZ.Text);
+
+            Matrix rotationX = Matrix.Identity4x4;
+            float xRot = float.Parse(rX.Text);
+            rotationX.value[1, 1] = (float)Math.Cos(xRot);
+            rotationX.value[1, 2] = (float)-Math.Sin(xRot);
+            rotationX.value[2, 1] = (float)Math.Sin(xRot);
+            rotationX.value[2, 2] = (float)Math.Cos(xRot);
+
+            Matrix rotationY = Matrix.Identity4x4;
+            float yRot = float.Parse(rY.Text);
+            rotationY.value[0, 0] = (float)Math.Cos(yRot);
+            rotationY.value[0, 2] = (float)Math.Sin(yRot);
+            rotationY.value[2, 0] = (float)-Math.Sin(yRot);
+            rotationY.value[2, 2] = (float)Math.Cos(yRot);
+
+            Matrix rotationZ = Matrix.Identity4x4;
+            float zRot = float.Parse(rZ.Text);
+            rotationZ.value[0, 0] = (float)Math.Cos(zRot);
+            rotationZ.value[0, 1] = (float)-Math.Sin(zRot);
+            rotationZ.value[1, 0] = (float)Math.Sin(zRot);
+            rotationZ.value[1, 1] = (float)Math.Cos(zRot);
+
+            this.transform = translation * scale * rotationX * rotationY * rotationZ;
+            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
+        }
+
         private void renderButton_Click(object sender, EventArgs e)
         {
             if (model == null)
@@ -98,6 +140,14 @@ namespace render
 
         private void TimerTick(object sender, EventArgs e)
         {
+            Matrix rotationY = Matrix.Identity4x4;
+            float yRot = 0.01f;
+            rotationY.value[0, 0] = (float)Math.Cos(yRot);
+            rotationY.value[0, 2] = (float)Math.Sin(yRot);
+            rotationY.value[2, 0] = (float)-Math.Sin(yRot);
+            rotationY.value[2, 2] = (float)Math.Cos(yRot);
+
+            transform *= rotationY;
             pictureBox1.Invalidate();
         }
 
@@ -116,6 +166,11 @@ namespace render
         private void penWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
+        }
+
+        private void onTransformInput(object sender, EventArgs e)
+        {
+            UpdateMatriciesFromInput();
         }
     }
 }

@@ -50,5 +50,14 @@ namespace render
         {
             return new Point((int)x, (int)y);
         }
+
+        public Matrix ToMatrix1x4()
+        {
+            return new Matrix(new float[4, 1]{
+                { x },
+                { y },
+                { z },
+                { 1 }});
+        }
     }
 }

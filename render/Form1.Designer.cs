@@ -35,44 +35,45 @@
             this.listDatacheckBox = new System.Windows.Forms.CheckBox();
             this.renderButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.sZ = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.sY = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.sX = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.rZ = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.rY = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.rX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.pZ = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.pY = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.wireframeCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.continuousRenderCheckBox = new System.Windows.Forms.CheckBox();
+            this.penWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.wireframeWidthLabel = new System.Windows.Forms.Label();
             this.autoRenderCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.renderTimeLabel = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.trisCountLabel = new System.Windows.Forms.Label();
-            this.wireframeWidthLabel = new System.Windows.Forms.Label();
-            this.penWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.renderTimeLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.continuousRenderCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.penWidthNumericUpDown)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -121,25 +122,26 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.sZ);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox8);
+            this.groupBox1.Controls.Add(this.sY);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.sX);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.rZ);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.rY);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.rX);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.pZ);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.pY);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.pX);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(645, 109);
@@ -149,14 +151,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Transformations";
             // 
-            // textBox7
+            // button1
             // 
-            this.textBox7.Location = new System.Drawing.Point(154, 110);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(42, 20);
-            this.textBox7.TabIndex = 20;
-            this.textBox7.Text = "1.0";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.button1.Location = new System.Drawing.Point(97, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 21);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Set";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.onTransformInput);
+            // 
+            // sZ
+            // 
+            this.sZ.Location = new System.Drawing.Point(154, 110);
+            this.sZ.Name = "sZ";
+            this.sZ.Size = new System.Drawing.Size(42, 20);
+            this.sZ.TabIndex = 20;
+            this.sZ.Text = "1,0";
+            this.sZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -167,14 +179,14 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "z:";
             // 
-            // textBox8
+            // sY
             // 
-            this.textBox8.Location = new System.Drawing.Point(90, 110);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(42, 20);
-            this.textBox8.TabIndex = 18;
-            this.textBox8.Text = "1.0";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sY.Location = new System.Drawing.Point(90, 110);
+            this.sY.Name = "sY";
+            this.sY.Size = new System.Drawing.Size(42, 20);
+            this.sY.TabIndex = 18;
+            this.sY.Text = "1,0";
+            this.sY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
@@ -185,14 +197,14 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "y:";
             // 
-            // textBox9
+            // sX
             // 
-            this.textBox9.Location = new System.Drawing.Point(24, 110);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(42, 20);
-            this.textBox9.TabIndex = 16;
-            this.textBox9.Text = "1.0";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sX.Location = new System.Drawing.Point(24, 110);
+            this.sX.Name = "sX";
+            this.sX.Size = new System.Drawing.Size(42, 20);
+            this.sX.TabIndex = 16;
+            this.sX.Text = "1,0";
+            this.sX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label11
             // 
@@ -212,14 +224,14 @@
             this.label12.TabIndex = 14;
             this.label12.Text = "Scale";
             // 
-            // textBox4
+            // rZ
             // 
-            this.textBox4.Location = new System.Drawing.Point(154, 71);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(42, 20);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.Text = "0.0";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.rZ.Location = new System.Drawing.Point(154, 71);
+            this.rZ.Name = "rZ";
+            this.rZ.Size = new System.Drawing.Size(42, 20);
+            this.rZ.TabIndex = 13;
+            this.rZ.Text = "0,0";
+            this.rZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -230,14 +242,14 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "z:";
             // 
-            // textBox5
+            // rY
             // 
-            this.textBox5.Location = new System.Drawing.Point(90, 71);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(42, 20);
-            this.textBox5.TabIndex = 11;
-            this.textBox5.Text = "0.0";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.rY.Location = new System.Drawing.Point(90, 71);
+            this.rY.Name = "rY";
+            this.rY.Size = new System.Drawing.Size(42, 20);
+            this.rY.TabIndex = 11;
+            this.rY.Text = "0,0";
+            this.rY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -248,14 +260,14 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "y:";
             // 
-            // textBox6
+            // rX
             // 
-            this.textBox6.Location = new System.Drawing.Point(24, 71);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(42, 20);
-            this.textBox6.TabIndex = 9;
-            this.textBox6.Text = "0.0";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.rX.Location = new System.Drawing.Point(24, 71);
+            this.rX.Name = "rX";
+            this.rX.Size = new System.Drawing.Size(42, 20);
+            this.rX.TabIndex = 9;
+            this.rX.Text = "0,0";
+            this.rX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
@@ -275,14 +287,14 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Rotation";
             // 
-            // textBox3
+            // pZ
             // 
-            this.textBox3.Location = new System.Drawing.Point(154, 32);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(42, 20);
-            this.textBox3.TabIndex = 6;
-            this.textBox3.Text = "0.0";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pZ.Location = new System.Drawing.Point(154, 32);
+            this.pZ.Name = "pZ";
+            this.pZ.Size = new System.Drawing.Size(42, 20);
+            this.pZ.TabIndex = 6;
+            this.pZ.Text = "0,0";
+            this.pZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
@@ -293,14 +305,14 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "z:";
             // 
-            // textBox2
+            // pY
             // 
-            this.textBox2.Location = new System.Drawing.Point(90, 32);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(42, 20);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "0.0";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pY.Location = new System.Drawing.Point(90, 32);
+            this.pY.Name = "pY";
+            this.pY.Size = new System.Drawing.Size(42, 20);
+            this.pY.TabIndex = 4;
+            this.pY.Text = "0,0";
+            this.pY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -311,14 +323,14 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "y:";
             // 
-            // textBox1
+            // pX
             // 
-            this.textBox1.Location = new System.Drawing.Point(24, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(42, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "0.0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pX.Location = new System.Drawing.Point(24, 32);
+            this.pX.Name = "pX";
+            this.pX.Size = new System.Drawing.Size(42, 20);
+            this.pX.TabIndex = 2;
+            this.pX.Text = "0,0";
+            this.pX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -365,57 +377,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rendering options";
             // 
-            // autoRenderCheckBox
+            // continuousRenderCheckBox
             // 
-            this.autoRenderCheckBox.AutoSize = true;
-            this.autoRenderCheckBox.Checked = true;
-            this.autoRenderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoRenderCheckBox.Location = new System.Drawing.Point(9, 63);
-            this.autoRenderCheckBox.Name = "autoRenderCheckBox";
-            this.autoRenderCheckBox.Size = new System.Drawing.Size(107, 17);
-            this.autoRenderCheckBox.TabIndex = 8;
-            this.autoRenderCheckBox.Text = "Re-render frames";
-            this.autoRenderCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.renderTimeLabel);
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.fileNameLabel);
-            this.groupBox3.Controls.Add(this.trisCountLabel);
-            this.groupBox3.Location = new System.Drawing.Point(645, 41);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 62);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Model statistics";
-            // 
-            // fileNameLabel
-            // 
-            this.fileNameLabel.AutoSize = true;
-            this.fileNameLabel.Location = new System.Drawing.Point(8, 16);
-            this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(70, 13);
-            this.fileNameLabel.TabIndex = 1;
-            this.fileNameLabel.Text = "File name: ----";
-            // 
-            // trisCountLabel
-            // 
-            this.trisCountLabel.AutoSize = true;
-            this.trisCountLabel.Location = new System.Drawing.Point(8, 38);
-            this.trisCountLabel.Name = "trisCountLabel";
-            this.trisCountLabel.Size = new System.Drawing.Size(72, 13);
-            this.trisCountLabel.TabIndex = 0;
-            this.trisCountLabel.Text = "Tris count: ----";
-            // 
-            // wireframeWidthLabel
-            // 
-            this.wireframeWidthLabel.AutoSize = true;
-            this.wireframeWidthLabel.Location = new System.Drawing.Point(8, 42);
-            this.wireframeWidthLabel.Name = "wireframeWidthLabel";
-            this.wireframeWidthLabel.Size = new System.Drawing.Size(83, 13);
-            this.wireframeWidthLabel.TabIndex = 9;
-            this.wireframeWidthLabel.Text = "Wireframe width";
+            this.continuousRenderCheckBox.AutoSize = true;
+            this.continuousRenderCheckBox.Location = new System.Drawing.Point(9, 86);
+            this.continuousRenderCheckBox.Name = "continuousRenderCheckBox";
+            this.continuousRenderCheckBox.Size = new System.Drawing.Size(123, 17);
+            this.continuousRenderCheckBox.TabIndex = 11;
+            this.continuousRenderCheckBox.Text = "Render continuously";
+            this.continuousRenderCheckBox.UseVisualStyleBackColor = true;
+            this.continuousRenderCheckBox.CheckedChanged += new System.EventHandler(this.continuousRenderCheckBox_CheckedChanged);
             // 
             // penWidthNumericUpDown
             // 
@@ -446,14 +417,39 @@
             0});
             this.penWidthNumericUpDown.ValueChanged += new System.EventHandler(this.penWidthNumericUpDown_ValueChanged);
             // 
-            // label14
+            // wireframeWidthLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(127, 16);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 13);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "Render time:";
+            this.wireframeWidthLabel.AutoSize = true;
+            this.wireframeWidthLabel.Location = new System.Drawing.Point(8, 42);
+            this.wireframeWidthLabel.Name = "wireframeWidthLabel";
+            this.wireframeWidthLabel.Size = new System.Drawing.Size(83, 13);
+            this.wireframeWidthLabel.TabIndex = 9;
+            this.wireframeWidthLabel.Text = "Wireframe width";
+            // 
+            // autoRenderCheckBox
+            // 
+            this.autoRenderCheckBox.AutoSize = true;
+            this.autoRenderCheckBox.Checked = true;
+            this.autoRenderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoRenderCheckBox.Location = new System.Drawing.Point(9, 63);
+            this.autoRenderCheckBox.Name = "autoRenderCheckBox";
+            this.autoRenderCheckBox.Size = new System.Drawing.Size(107, 17);
+            this.autoRenderCheckBox.TabIndex = 8;
+            this.autoRenderCheckBox.Text = "Re-render frames";
+            this.autoRenderCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.renderTimeLabel);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.fileNameLabel);
+            this.groupBox3.Controls.Add(this.trisCountLabel);
+            this.groupBox3.Location = new System.Drawing.Point(645, 41);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 62);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Model statistics";
             // 
             // renderTimeLabel
             // 
@@ -464,21 +460,37 @@
             this.renderTimeLabel.TabIndex = 3;
             this.renderTimeLabel.Text = "N / A";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(127, 16);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 13);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Render time:";
+            // 
+            // fileNameLabel
+            // 
+            this.fileNameLabel.AutoSize = true;
+            this.fileNameLabel.Location = new System.Drawing.Point(8, 16);
+            this.fileNameLabel.Name = "fileNameLabel";
+            this.fileNameLabel.Size = new System.Drawing.Size(70, 13);
+            this.fileNameLabel.TabIndex = 1;
+            this.fileNameLabel.Text = "File name: ----";
+            // 
+            // trisCountLabel
+            // 
+            this.trisCountLabel.AutoSize = true;
+            this.trisCountLabel.Location = new System.Drawing.Point(8, 38);
+            this.trisCountLabel.Name = "trisCountLabel";
+            this.trisCountLabel.Size = new System.Drawing.Size(72, 13);
+            this.trisCountLabel.TabIndex = 0;
+            this.trisCountLabel.Text = "Tris count: ----";
+            // 
             // timer1
             // 
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.TimerTick);
-            // 
-            // continuousRenderCheckBox
-            // 
-            this.continuousRenderCheckBox.AutoSize = true;
-            this.continuousRenderCheckBox.Location = new System.Drawing.Point(9, 86);
-            this.continuousRenderCheckBox.Name = "continuousRenderCheckBox";
-            this.continuousRenderCheckBox.Size = new System.Drawing.Size(123, 17);
-            this.continuousRenderCheckBox.TabIndex = 11;
-            this.continuousRenderCheckBox.Text = "Render continuously";
-            this.continuousRenderCheckBox.UseVisualStyleBackColor = true;
-            this.continuousRenderCheckBox.CheckedChanged += new System.EventHandler(this.continuousRenderCheckBox_CheckedChanged);
             // 
             // Form1
             // 
@@ -499,9 +511,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.penWidthNumericUpDown)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.penWidthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,25 +526,25 @@
         private System.Windows.Forms.CheckBox listDatacheckBox;
         private System.Windows.Forms.Button renderButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox pZ;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox pY;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox pX;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox sZ;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox sY;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox sX;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox rZ;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox rY;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox rX;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox wireframeCheckBox;
@@ -547,6 +559,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox continuousRenderCheckBox;
+        private System.Windows.Forms.Button button1;
     }
 }
 
