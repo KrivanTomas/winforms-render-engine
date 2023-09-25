@@ -1,0 +1,17 @@
+G:\RPR\render\render\bin\Debug\render.exe.config
+G:\RPR\render\render\bin\Debug\render.exe
+G:\RPR\render\render\bin\Debug\render.pdb
+G:\RPR\render\render\obj\Debug\render.csprojAssemblyReference.cache
+G:\RPR\render\render\obj\Debug\render.Form1.resources
+G:\RPR\render\render\obj\Debug\render.Properties.Resources.resources
+G:\RPR\render\render\obj\Debug\render.csproj.GenerateResource.cache
+G:\RPR\render\render\obj\Debug\render.csproj.CoreCompileInputs.cache
+G:\RPR\render\render\obj\Debug\render.exe
+G:\RPR\render\render\obj\Debug\render.pdb
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.csprojAssemblyReference.cache
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.Form1.resources
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.Properties.Resources.resources
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.GenerateResource.cache
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.CoreCompileInputs.cache
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.exe
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.pdb
