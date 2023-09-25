@@ -46,17 +46,26 @@ namespace render
             else
             {
                 Vector3 cameraNormal = new Vector3(0, 0, 1);
+                SolidBrush sb = new SolidBrush(Color.White);
+                Point[] pointBuffer = new Point[3];
                 foreach (Tris tris in model.tris)
                 {
-                    float diff = cameraNormal * tris.normal.Normalize();
+                    float diff = cameraNormal * tris.normal;
                     if (diff < 0) continue;
-                    Vector3 color = Vector3.One * Math.Abs(diff) * 255;
+                    Vector3 color = Vector3.One * diff * 255;
+                    sb.Color = Color.FromArgb(255, (int)color.x, (int)color.y, (int)color.z);
+                    
+                    pointBuffer[0] = (tris.vertex[0] * 100f + centerOffset).ToPoint();
+                    pointBuffer[1] = (tris.vertex[1] * 100f + centerOffset).ToPoint();
+                    pointBuffer[2] = (tris.vertex[2] * 100f + centerOffset).ToPoint();
 
-                    g.FillPolygon(new SolidBrush(Color.FromArgb(diff < 0 ? 0 : 255, Convert.ToInt32(color.x), Convert.ToInt32(color.y), Convert.ToInt32(color.z))), tris.vertex.Select(x => (x * 100f + centerOffset).ToPoint()).ToArray<Point>());
+                    g.FillPolygon(sb, pointBuffer);
                 }
+                sb.Dispose();
             }
             stopwatch.Stop();
             renderTimeLabel.Text = stopwatch.ElapsedMilliseconds.ToString() + "ms";
+            //g.DrawString((double)1 / (stopwatch.ElapsedMilliseconds) * 1000 + " fps", new Font("Arial", 10), Brushes.White, PointF.Empty);
         }
 
         private void LoadSTL(object sender, EventArgs e)
@@ -69,7 +78,7 @@ namespace render
             trisCountLabel.Text = "Tris count: " + model.trisCount.ToString();
             fileNameLabel.Text = "File name: " + openFileDialog1.FileName.Split('\\').Last();
 
-            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Refresh();
+            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
             if (!listDatacheckBox.Checked) return;
             for(int i = 0; i < model.trisCount; i++)
             {
@@ -84,12 +93,12 @@ namespace render
                 MessageBox.Show("No model loaded in memory", "Cannot render", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            pictureBox1.Refresh();
+            pictureBox1.Invalidate();
         }
 
         private void TimerTick(object sender, EventArgs e)
         {
-            pictureBox1.Refresh();
+            pictureBox1.Invalidate();
         }
 
         private void continuousRenderCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -101,12 +110,12 @@ namespace render
         {
             wireframeWidthLabel.Enabled = wireframeCheckBox.Checked;
             penWidthNumericUpDown.Enabled = wireframeCheckBox.Checked;
-            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Refresh();
+            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
         }
 
         private void penWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Refresh();
+            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
         }
     }
 }

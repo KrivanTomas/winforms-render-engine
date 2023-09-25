@@ -431,6 +431,11 @@
             0,
             0,
             0});
+            this.penWidthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.penWidthNumericUpDown.Name = "penWidthNumericUpDown";
             this.penWidthNumericUpDown.Size = new System.Drawing.Size(82, 20);
             this.penWidthNumericUpDown.TabIndex = 10;
@@ -488,7 +493,7 @@
             this.Controls.Add(this.loadStlButton);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Winforms renderer // Made by: @cyanroke";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

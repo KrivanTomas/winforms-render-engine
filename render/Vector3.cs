@@ -43,13 +43,12 @@ namespace render
 
         public Vector3 Normalize()
         {
-            float length = Convert.ToSingle(Length());
-            return new Vector3(x / length, y / length, z / length);
+            return this * (1 / (float)Length());
         }
 
         public Point ToPoint()
         {
-            return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+            return new Point((int)x, (int)y);
         }
     }
 }
