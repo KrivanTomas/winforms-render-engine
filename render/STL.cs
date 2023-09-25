@@ -10,7 +10,7 @@ namespace render
     class STL
     {
         public byte[] header;
-        public Int32 trisCount;
+        public UInt32 trisCount;
         public Tris[] tris;
         
         public STL(Stream fileStream)
@@ -18,17 +18,17 @@ namespace render
             using(BinaryReader br = new BinaryReader(fileStream))
             {
                 header = br.ReadBytes(80);
-                trisCount = br.ReadInt32();
+                trisCount = br.ReadUInt32();
                 tris = new Tris[trisCount];
                 for(int tris = 0; tris < trisCount; tris++)
                 {
-                    Vector3 normal = new Vector3(br.ReadInt32(), br.ReadInt32(), br.ReadInt32());
+                    Vector3 normal = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
                     Vector3[] vertex = new Vector3[] {
-                        new Vector3(br.ReadInt32(),br.ReadInt32(),br.ReadInt32()),
-                        new Vector3(br.ReadInt32(),br.ReadInt32(),br.ReadInt32()),
-                        new Vector3(br.ReadInt32(),br.ReadInt32(),br.ReadInt32())
+                        new Vector3(br.ReadSingle(),br.ReadSingle(),br.ReadSingle()),
+                        new Vector3(br.ReadSingle(),br.ReadSingle(),br.ReadSingle()),
+                        new Vector3(br.ReadSingle(),br.ReadSingle(),br.ReadSingle())
                     };
-                    br.ReadInt16();
+                    br.ReadUInt16();
                     this.tris[tris] = new Tris(normal, vertex);
                 }
             }

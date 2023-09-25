@@ -15,3 +15,14 @@ G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.Genera
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.CoreCompileInputs.cache
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.exe
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.pdb
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.AssemblyReference.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.SuggestedBindingRedirects.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.Form1.resources
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.Properties.Resources.resources
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.GenerateResource.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.csproj.CoreCompileInputs.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.exe
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.pdb
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.exe.config
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.exe
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.pdb
