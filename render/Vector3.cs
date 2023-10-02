@@ -28,8 +28,14 @@ namespace render
 
         public static float operator *(Vector3 a, Vector3 b) => a.x * b.x + a.y * b.y + a.z * b.z;
 
-        public static Vector3 Zero = new Vector3(0, 0, 0);
-        public static Vector3 One = new Vector3(1, 1, 1);
+        public static Vector3 Zero()
+        {
+            return new Vector3(0, 0, 0);
+        }
+
+        public static Vector3 One() {
+            return new Vector3(1, 1, 1);
+        }
 
         public override string ToString()
         {

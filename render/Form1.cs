@@ -18,7 +18,7 @@ namespace render
         public Form1()
         {
             InitializeComponent();
-            transform = Matrix.Identity4x4;
+            transform = Matrix.Identity4x4();
         }
 
         STL model;
@@ -57,7 +57,7 @@ namespace render
                 {
                     float diff = cameraNormal * (transform * tris.normal).Normalize();
                     if (diff < 0) continue;
-                    Vector3 color = Vector3.One * diff * 255;
+                    Vector3 color = Vector3.One() * diff * 255;
                     sb.Color = Color.FromArgb(255, (int)color.x, (int)color.y, (int)color.z);
                     
                     pointBuffer[0] = (transform * tris.vertex[0] * 100f + centerOffset).ToPoint();
@@ -93,38 +93,38 @@ namespace render
 
         public void UpdateMatriciesFromInput()
         {
-            Matrix translation = Matrix.Identity4x4;
+            Matrix translation = Matrix.Identity4x4();
             translation.value[0, 3] = float.Parse(pX.Text);
             translation.value[1, 3] = float.Parse(pY.Text);
             translation.value[2, 3] = float.Parse(pZ.Text);
 
-            Matrix scale = Matrix.Identity4x4;
+            Matrix scale = Matrix.Identity4x4();
             scale.value[0, 0] = float.Parse(sX.Text);
             scale.value[1, 1] = float.Parse(sY.Text);
             scale.value[2, 2] = float.Parse(sZ.Text);
 
-            Matrix rotationX = Matrix.Identity4x4;
+            Matrix rotationX = Matrix.Identity4x4();
             float xRot = float.Parse(rX.Text);
             rotationX.value[1, 1] = (float)Math.Cos(xRot);
             rotationX.value[1, 2] = (float)-Math.Sin(xRot);
             rotationX.value[2, 1] = (float)Math.Sin(xRot);
             rotationX.value[2, 2] = (float)Math.Cos(xRot);
 
-            Matrix rotationY = Matrix.Identity4x4;
+            Matrix rotationY = Matrix.Identity4x4();
             float yRot = float.Parse(rY.Text);
             rotationY.value[0, 0] = (float)Math.Cos(yRot);
             rotationY.value[0, 2] = (float)Math.Sin(yRot);
             rotationY.value[2, 0] = (float)-Math.Sin(yRot);
             rotationY.value[2, 2] = (float)Math.Cos(yRot);
 
-            Matrix rotationZ = Matrix.Identity4x4;
+            Matrix rotationZ = Matrix.Identity4x4();
             float zRot = float.Parse(rZ.Text);
             rotationZ.value[0, 0] = (float)Math.Cos(zRot);
             rotationZ.value[0, 1] = (float)-Math.Sin(zRot);
             rotationZ.value[1, 0] = (float)Math.Sin(zRot);
             rotationZ.value[1, 1] = (float)Math.Cos(zRot);
 
-            this.transform = translation * scale * rotationX * rotationY * rotationZ;
+            this.transform =  rotationX * rotationY * rotationZ * scale * translation;
             if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
         }
 
@@ -140,14 +140,21 @@ namespace render
 
         private void TimerTick(object sender, EventArgs e)
         {
-            Matrix rotationY = Matrix.Identity4x4;
-            float yRot = 0.01f;
+            Matrix rotationY = Matrix.Identity4x4();
+            float yRot = 0.03f;
             rotationY.value[0, 0] = (float)Math.Cos(yRot);
             rotationY.value[0, 2] = (float)Math.Sin(yRot);
             rotationY.value[2, 0] = (float)-Math.Sin(yRot);
             rotationY.value[2, 2] = (float)Math.Cos(yRot);
 
-            transform *= rotationY;
+            Matrix rotationX = Matrix.Identity4x4();
+            float xRot = 0.01f;
+            rotationX.value[1, 1] = (float)Math.Cos(xRot);
+            rotationX.value[1, 2] = (float)-Math.Sin(xRot);
+            rotationX.value[2, 1] = (float)Math.Sin(xRot);
+            rotationX.value[2, 2] = (float)Math.Cos(xRot);
+
+            transform *= rotationY * rotationX;
             pictureBox1.Invalidate();
         }
 

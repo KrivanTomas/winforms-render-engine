@@ -20,20 +20,26 @@ namespace render
             this.columns = value.GetLength(1);
         }
 
-        public static Matrix Empty4x4 = new Matrix(
+        public static Matrix Empty4x4()
+        {
+            return new Matrix(
             new float[,]{
                 { 0, 0, 0, 0},
                 { 0, 0, 0, 0},
                 { 0, 0, 0, 0},
                 { 0, 0, 0, 0}
             });
-        public static Matrix Identity4x4 = new Matrix(
+        }
+        public static Matrix Identity4x4()
+        {
+            return new Matrix(
             new float[,]{
                 { 1, 0, 0, 0},
                 { 0, 1, 0, 0},
                 { 0, 0, 1, 0},
                 { 0, 0, 0, 1}
             });
+        }
 
         public static Matrix operator *(Matrix a, Matrix b)
         {
