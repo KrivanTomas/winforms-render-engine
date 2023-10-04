@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace render
+namespace WinformRender
 {
     static class Program
     {
         /// <summary>
-        /// Hlavní vstupní bod aplikace.
+        /// windforms-reder-engine
+        /// made by @cyanroke
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new DebugWindow());
         }
     }
 }

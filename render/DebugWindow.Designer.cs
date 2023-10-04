@@ -1,6 +1,6 @@
-﻿namespace render
+﻿namespace WinformRender
 {
-    partial class Form1
+    partial class DebugWindow
     {
         /// <summary>
         /// Vyžaduje se proměnná návrháře.
@@ -69,6 +69,8 @@
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.trisCountLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -293,7 +295,7 @@
             this.pZ.Name = "pZ";
             this.pZ.Size = new System.Drawing.Size(42, 20);
             this.pZ.TabIndex = 6;
-            this.pZ.Text = "0,0";
+            this.pZ.Text = "-5,0";
             this.pZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
@@ -454,11 +456,12 @@
             // renderTimeLabel
             // 
             this.renderTimeLabel.AutoSize = true;
-            this.renderTimeLabel.Location = new System.Drawing.Point(144, 38);
+            this.renderTimeLabel.Location = new System.Drawing.Point(138, 38);
             this.renderTimeLabel.Name = "renderTimeLabel";
             this.renderTimeLabel.Size = new System.Drawing.Size(33, 13);
             this.renderTimeLabel.TabIndex = 3;
             this.renderTimeLabel.Text = "N / A";
+            this.renderTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label14
             // 
@@ -492,11 +495,37 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.TimerTick);
             // 
-            // Form1
+            // radioButton1
+            // 
+            this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(922, 99);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(78, 23);
+            this.radioButton1.TabIndex = 10;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "fake shading";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(922, 128);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(84, 23);
+            this.radioButton2.TabIndex = 11;
+            this.radioButton2.Text = "polygon depth";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // DebugWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 450);
+            this.ClientSize = new System.Drawing.Size(1151, 450);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -504,7 +533,7 @@
             this.Controls.Add(this.listDatacheckBox);
             this.Controls.Add(this.loadStlButton);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
+            this.Name = "DebugWindow";
             this.Text = "Winforms renderer // Made by: @cyanroke";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -560,6 +589,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox continuousRenderCheckBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
 

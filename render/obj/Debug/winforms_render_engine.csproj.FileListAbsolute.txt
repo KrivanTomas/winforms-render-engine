@@ -1,0 +1,11 @@
+C:\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.SuggestedBindingRedirects.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.Properties.Resources.resources
+C:\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.GenerateResource.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.CoreCompileInputs.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.exe
+C:\GitHub\winforms-render-engine\render\obj\Debug\render.pdb
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.exe.config
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.exe
+C:\GitHub\winforms-render-engine\render\bin\Debug\render.pdb
+C:\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.AssemblyReference.cache
+C:\GitHub\winforms-render-engine\render\obj\Debug\WinformRender.DebugWindow.resources

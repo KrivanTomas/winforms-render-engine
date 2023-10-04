@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace render
+namespace WinformRender
 {
-    internal class Matrix
+    public class Matrix
     {
         public float[,] value;
         public int rows;
@@ -20,24 +20,30 @@ namespace render
             this.columns = value.GetLength(1);
         }
 
+        public Vector4 ToVector4()
+        {
+            if (rows != 4 || columns != 1) throw new ArithmeticException("Cannot convert matricies other then 1x4s");
+            return new Vector4(value[0, 0], value[1, 0], value[2, 0], value[3, 0]);
+        }
+
         public static Matrix Empty4x4()
         {
             return new Matrix(
             new float[,]{
-                { 0, 0, 0, 0},
-                { 0, 0, 0, 0},
-                { 0, 0, 0, 0},
-                { 0, 0, 0, 0}
+                { 0f, 0f, 0f, 0f},
+                { 0f, 0f, 0f, 0f},
+                { 0f, 0f, 0f, 0f},
+                { 0f, 0f, 0f, 0f}
             });
         }
         public static Matrix Identity4x4()
         {
             return new Matrix(
             new float[,]{
-                { 1, 0, 0, 0},
-                { 0, 1, 0, 0},
-                { 0, 0, 1, 0},
-                { 0, 0, 0, 1}
+                { 1f, 0f, 0f, 0f},
+                { 0f, 1f, 0f, 0f},
+                { 0f, 0f, 1f, 0f},
+                { 0f, 0f, 0f, 1f}
             });
         }
 
@@ -67,6 +73,11 @@ namespace render
         {
             Matrix result = m * v.ToMatrix1x4();
             return new Vector3(result.value[0, 0], result.value[1, 0], result.value[2, 0]);
+        }
+        public static Vector4 operator ^(Matrix m, Vector3 v)
+        {
+            Matrix result = m * v.ToMatrix1x4();
+            return result.ToVector4();
         }
 
         public override string ToString()
