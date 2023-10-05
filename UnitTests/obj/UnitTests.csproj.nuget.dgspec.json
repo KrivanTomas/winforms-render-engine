@@ -1,42 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj": {}
+    "G:\\Dokumenty\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj": {
+    "G:\\Dokumenty\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj",
+        "projectUniqueName": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj",
         "projectName": "winforms_render_engine",
-        "projectPath": "C:\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj",
-        "frameworks": {
-          "net472": {
-            "projectReferences": {}
-          }
-        }
+        "projectPath": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj": {
+    "G:\\Dokumenty\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj",
+        "projectUniqueName": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj",
         "projectName": "UnitTests",
-        "projectPath": "C:\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\winforms-render-engine\\UnitTests\\obj\\",
+        "projectPath": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\UnitTests\\UnitTests.csproj",
+        "packagesPath": "C:\\Users\\krivant.05\\.nuget\\packages\\",
+        "outputPath": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\krivant.05\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -46,11 +35,10 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net60": {
             "projectReferences": {
-              "C:\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj": {
-                "projectPath": "C:\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj"
+              "G:\\Dokumenty\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj": {
+                "projectPath": "G:\\Dokumenty\\GitHub\\winforms-render-engine\\render\\winforms_render_engine.csproj"
               }
             }
           }
@@ -62,8 +50,7 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net60": {
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -82,22 +69,7 @@
               "version": "[3.1.0, )"
             }
           },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.426\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -22,7 +22,7 @@ namespace WinformRender
 
 
             fixedDelta = timer1.Interval * 0.001f;
-            renderMode = RenderingMode.PerspectiveWireframe;
+            renderMode = RenderingMode.OrthographicZDepth;
 
 
             // transforms
@@ -100,6 +100,24 @@ namespace WinformRender
                         Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
                         TrisShader.Perspective.DrawWireframe(g, whitePen, model, transformMX, perspectiveMX, ref vectorBuffer, ref pointBuffer);
                         whitePen.Dispose();
+                        break;
+                    }
+                case RenderingMode.OrthographicTrisshade:
+                    {
+                        Vector3 lightDirection = new Vector3(-1, 0, -1);
+                        TrisShader.Orthographic.DrawTrisshade(g, lightDirection, model, transformMX, rotation,orthographicMX, ref pointBuffer);
+                        break;
+                    }
+                case RenderingMode.PerspectiveTrisshade:
+                    {
+                        Vector3 lightDirection = new Vector3(-1, 0, -1);
+                        TrisShader.Perspective.DrawTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                        break;
+                    }
+                case RenderingMode.OrthographicZDepth:
+                    {
+                        Vector3 lightDirection = new Vector3(-1, 0, -1);
+                        TrisShader.Orthographic.DrawZDepth(g, model, transformMX, orthographicMX, ref vectorBuffer, ref pointBuffer);
                         break;
                     }
             }
