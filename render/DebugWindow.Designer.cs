@@ -57,7 +57,6 @@
             this.pX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.wireframeCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.continuousRenderCheckBox = new System.Windows.Forms.CheckBox();
             this.penWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -69,8 +68,8 @@
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.trisCountLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -352,26 +351,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Position";
             // 
-            // wireframeCheckBox
-            // 
-            this.wireframeCheckBox.AutoSize = true;
-            this.wireframeCheckBox.Checked = true;
-            this.wireframeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.wireframeCheckBox.Location = new System.Drawing.Point(9, 19);
-            this.wireframeCheckBox.Name = "wireframeCheckBox";
-            this.wireframeCheckBox.Size = new System.Drawing.Size(96, 17);
-            this.wireframeCheckBox.TabIndex = 7;
-            this.wireframeCheckBox.Text = "Wireframe only";
-            this.wireframeCheckBox.UseVisualStyleBackColor = true;
-            this.wireframeCheckBox.CheckedChanged += new System.EventHandler(this.wireframeCheckBox_CheckedChanged);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.continuousRenderCheckBox);
             this.groupBox2.Controls.Add(this.penWidthNumericUpDown);
             this.groupBox2.Controls.Add(this.wireframeWidthLabel);
             this.groupBox2.Controls.Add(this.autoRenderCheckBox);
-            this.groupBox2.Controls.Add(this.wireframeCheckBox);
             this.groupBox2.Location = new System.Drawing.Point(645, 254);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 148);
@@ -495,37 +480,31 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.TimerTick);
             // 
-            // radioButton1
+            // label13
             // 
-            this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(922, 99);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(78, 23);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "fake shading";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(884, 31);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(99, 13);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Temporary GUI btw";
             // 
-            // radioButton2
+            // comboBox1
             // 
-            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(922, 128);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(84, 23);
-            this.radioButton2.TabIndex = 11;
-            this.radioButton2.Text = "polygon depth";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(910, 71);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(151, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // DebugWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 450);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -576,7 +555,6 @@
         private System.Windows.Forms.TextBox rX;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox wireframeCheckBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox autoRenderCheckBox;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -589,8 +567,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox continuousRenderCheckBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

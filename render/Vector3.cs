@@ -29,6 +29,7 @@ namespace WinformRender
         public static float operator *(Vector3 a, Vector3 b) => a.x * b.x + a.y * b.y + a.z * b.z;
         public static Vector3 operator /(Vector3 a, float b) => new Vector3(a.x / b, a.y / b, a.z / b);
 
+
         public static Vector3 Zero()
         {
             return new Vector3(0f, 0f, 0f);
@@ -36,6 +37,11 @@ namespace WinformRender
 
         public static Vector3 One() {
             return new Vector3(1f, 1f, 1f);
+        }
+
+        public Vector4 PuffToVector4()
+        {
+            return new Vector4(x, y, z, 0);
         }
 
         public override string ToString()
@@ -121,6 +127,11 @@ namespace WinformRender
         public Vector3 FlattenDivideByW()
         {
             return this.FlattenToVector3() / w;
+        }
+
+        public Vector4 DivideByW()
+        {
+            return new Vector4(x / w, y / w, z / w, 1);
         }
     }
 }

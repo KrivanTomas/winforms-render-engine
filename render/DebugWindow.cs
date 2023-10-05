@@ -14,15 +14,29 @@ namespace WinformRender
 {
     public partial class DebugWindow : Form
     {
-        
+        // TODO:
+        // Ambient light
+        // Mouse rotation
+
+        // Gamma correction
+        // Z Depth rendering / clipping
+        // Clip space / Camera perspective cliping
+        // Actual per pixel rendering / Vert and Frag shaders
+        // Sprite rendering
+        // FBX support - UVs, Textures, ...
+        // Camera transform
+        // Shadow mapping
+        // Ray casting / Ray tracing
+
         public DebugWindow()
         {
             InitializeComponent();
 
-
+            comboBox1.Items.AddRange(Enum.GetNames(typeof(RenderingMode)));
+            comboBox1.SelectedIndex = 0;
 
             fixedDelta = timer1.Interval * 0.001f;
-            renderMode = RenderingMode.OrthographicZDepth;
+            renderMode = RenderingMode.OrthographicWireframe;
 
 
             // transforms
@@ -30,8 +44,8 @@ namespace WinformRender
             orthographicMX = Matrix.Identity4x4();
             UpdateMatriciesFromInput();
 
-            float width = 1f;
-            float height = 1f;
+            float width = .008f;
+            float height = .006f;
             float Z_far = 10f;
             float Z_near = 0.01f;
 
@@ -87,113 +101,65 @@ namespace WinformRender
 
             transformMX = translation * scale * rotation;
 
-            switch (renderMode) {
+            switch (renderMode)
+            {
                 case RenderingMode.OrthographicWireframe:
-                    {
-                        Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
-                        TrisShader.Orthographic.DrawWireframe(g, whitePen, model, transformMX, orthographicMX, ref pointBuffer);
-                        whitePen.Dispose();
-                        break;
-                    }
+                {
+                    Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
+                    TrisShader.Orthographic.DrawWireframe(g, whitePen, model, transformMX, orthographicMX, ref pointBuffer);
+                    whitePen.Dispose();
+                    break;
+                }
                 case RenderingMode.PerspectiveWireframe:
-                    {
-                        Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
-                        TrisShader.Perspective.DrawWireframe(g, whitePen, model, transformMX, perspectiveMX, ref vectorBuffer, ref pointBuffer);
-                        whitePen.Dispose();
-                        break;
-                    }
+                {
+                    Pen whitePen = new Pen(Brushes.White, Convert.ToSingle(penWidthNumericUpDown.Value));
+                    TrisShader.Perspective.DrawWireframe(g, whitePen, model, transformMX, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    whitePen.Dispose();
+                    break;
+                }
                 case RenderingMode.OrthographicTrisshade:
-                    {
-                        Vector3 lightDirection = new Vector3(-1, 0, -1);
-                        TrisShader.Orthographic.DrawTrisshade(g, lightDirection, model, transformMX, rotation,orthographicMX, ref pointBuffer);
-                        break;
-                    }
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Orthographic.DrawTrisshade(g, lightDirection, model, transformMX, rotation, orthographicMX, ref pointBuffer);
+                    break;
+                }
                 case RenderingMode.PerspectiveTrisshade:
-                    {
-                        Vector3 lightDirection = new Vector3(-1, 0, -1);
-                        TrisShader.Perspective.DrawTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
-                        break;
-                    }
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Perspective.DrawTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
                 case RenderingMode.OrthographicZDepth:
-                    {
-                        Vector3 lightDirection = new Vector3(-1, 0, -1);
-                        TrisShader.Orthographic.DrawZDepth(g, model, transformMX, orthographicMX, ref vectorBuffer, ref pointBuffer);
-                        break;
-                    }
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Orthographic.DrawZDepth(g, model, transformMX, rotation, orthographicMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
+                case RenderingMode.PerspectiveZDepth:
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Perspective.DrawZDepth(g, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
+                case RenderingMode.RandomTrisshade:
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Funky.RandomTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
+                case RenderingMode.OffsetTrisshade:
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Funky.OffsetTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
+                case RenderingMode.OutlineTrisshade:
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    TrisShader.Funky.OutlineTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
             }
-            //    else if (radioButton1.Checked)
-            //    {   // fake shading
-            //        Vector3 cameraNormal = new Vector3(0, 0, 1);
-            //        Vector3 transformedNormal;
-            //        float dot;
-            //        SolidBrush sb = new SolidBrush(Color.White);
-            //        foreach (Tris tris in model.tris)
-            //        {
-            //            transformedNormal = rotation * tris.normal;
-            //            if (!transformedNormal.IsNil())
-            //            {
-            //                dot = cameraNormal * transformedNormal.Normalize();
-            //                // TODO: Fix overflow???
-            //                if (dot < 0) continue;
-            //                Vector3 color = Vector3.One() * dot * 255;
-            //                sb.Color = Color.FromArgb(255, (int)color.x, (int)color.y, (int)color.z);
-            //            }
-            //            else
-            //            {
-            //                sb.Color = Color.PeachPuff;
-            //            }
-
-            //            // Object space -> World space -> View space -> Projection space
-            //            Matrix awa = projectionMX * (transformMX * tris.vertex[0].ToMatrix1x4());
-            //            Matrix awb = projectionMX * (transformMX * tris.vertex[1].ToMatrix1x4());
-            //            Matrix awc = projectionMX * (transformMX * tris.vertex[2].ToMatrix1x4());
-            //            pointBuffer[0] = (new Vector3(awa.value[0, 0], awa.value[1, 0], awa.value[2, 0]) * aspect / awa.value[3, 0] + centerOffset).ToPoint();
-            //            pointBuffer[1] = (new Vector3(awb.value[0, 0], awb.value[1, 0], awb.value[2, 0]) * aspect / awb.value[3, 0] + centerOffset).ToPoint();
-            //            pointBuffer[2] = (new Vector3(awc.value[0, 0], awc.value[1, 0], awc.value[2, 0]) * aspect / awc.value[3, 0] + centerOffset).ToPoint();
-
-            //            g.FillPolygon(sb, pointBuffer);
-            //        }
-            //        sb.Dispose();
-            //    }
-            //    else
-            //    {   // polygon depth
-            //        Vector3 cameraNormal = new Vector3(0, 0, 1);
-            //        Vector3 transformedNormal;
-            //        float dot;
-            //        SolidBrush sb = new SolidBrush(Color.White);
-            //        foreach (Tris tris in model.tris)
-            //        {
-            //            transformedNormal = rotation * tris.normal;
-            //            if (!transformedNormal.IsNil())
-            //            {
-            //                dot = cameraNormal * transformedNormal.Normalize();
-            //                // TODO: Fix overflow???
-            //                if (dot < 0) continue;
-            //            }
-            //            else
-            //            {
-            //                sb.Color = Color.PeachPuff;
-            //            }
-
-            //            // Object space -> World space -> View space -> Projection space
-            //            vectorBuffer[0] = projectionMX * (transformMX * tris.vertex[0]) + centerOffset;
-            //            vectorBuffer[1] = projectionMX * (transformMX * tris.vertex[1]) + centerOffset;
-            //            vectorBuffer[2] = projectionMX * (transformMX * tris.vertex[2]) + centerOffset;
-
-            //            pointBuffer[0] = vectorBuffer[0].ToPoint();
-            //            pointBuffer[1] = vectorBuffer[1].ToPoint();
-            //            pointBuffer[2] = vectorBuffer[2].ToPoint();
-
-            //            float averageZ = ((vectorBuffer[0].z + vectorBuffer[1].z + vectorBuffer[2].z) / 3f + 1f) * 0.5f;
-            //            if (averageZ > 1 || averageZ < 0) continue;
-            //            Vector3 color = Vector3.One() * averageZ * 255;
-            //            sb.Color = Color.FromArgb(255, (int)color.x, (int)color.y, (int)color.z);
-
-            //            g.FillPolygon(sb, pointBuffer);
-            //        }
-            //        sb.Dispose();
-
-            //    }
             stopwatch.Stop();
             delta = (float)stopwatch.ElapsedTicks / Stopwatch.Frequency;
             renderTimeLabel.Text = (delta * 1000) + "ms";
@@ -289,7 +255,7 @@ namespace WinformRender
             translation.value[1, 3] = 0;
             translation.value[2, 3] = 10f * fixedDelta;
 
-            rotation *= rotationX * rotationY;
+            rotation *= rotationY;
 
             pictureBox1.Invalidate();
         }
@@ -301,7 +267,10 @@ namespace WinformRender
             OrthographicZDepth,
             PerspectiveWireframe,
             PerspectiveTrisshade,
-            PerspectiveZDepth
+            PerspectiveZDepth,
+            RandomTrisshade,
+            OffsetTrisshade,
+            OutlineTrisshade
         }
 
         private void continuousRenderCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -309,12 +278,12 @@ namespace WinformRender
             timer1.Enabled = continuousRenderCheckBox.Checked;
         }
 
-        private void wireframeCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            wireframeWidthLabel.Enabled = wireframeCheckBox.Checked;
-            penWidthNumericUpDown.Enabled = wireframeCheckBox.Checked;
-            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
-        }
+        //private void wireframeCheckBox_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    wireframeWidthLabel.Enabled = wireframeCheckBox.Checked;
+        //    penWidthNumericUpDown.Enabled = wireframeCheckBox.Checked;
+        //    if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
+        //}
 
         private void penWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -324,6 +293,12 @@ namespace WinformRender
         private void onTransformInput(object sender, EventArgs e)
         {
             UpdateMatriciesFromInput();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            renderMode = (RenderingMode)comboBox1.SelectedIndex;
+            if (autoRenderCheckBox.Checked && !continuousRenderCheckBox.Checked) pictureBox1.Invalidate();
         }
     }
 }
