@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 
 namespace WinformRender
 {
@@ -85,7 +86,6 @@ namespace WinformRender
         Matrix rotationY;
         Matrix rotationZ;
 
-
         float delta = 0;
 
         private void Render(object sender, PaintEventArgs e)
@@ -94,8 +94,8 @@ namespace WinformRender
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            Vector2 canvasSize = new Vector2((sender as PictureBox).Width, (sender as Control).Height);
             Graphics g = e.Graphics;
-
             Point[] pointBuffer = new Point[3];
             Vector4[] vectorBuffer = new Vector4[3];
 
@@ -157,6 +157,12 @@ namespace WinformRender
                 {
                     Vector3 lightDirection = new Vector3(-1, 0, 1);
                     TrisShader.Funky.OutlineTrisshade(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer);
+                    break;
+                }
+                case RenderingMode.EXPERIMENTALRASTER:
+                {
+                    Vector3 lightDirection = new Vector3(-1, 0, 1);
+                    RasterShader.Perspective.Draw(g, lightDirection, model, transformMX, rotation, perspectiveMX, ref vectorBuffer, ref pointBuffer, canvasSize);
                     break;
                 }
             }
@@ -270,7 +276,8 @@ namespace WinformRender
             PerspectiveZDepth,
             RandomTrisshade,
             OffsetTrisshade,
-            OutlineTrisshade
+            OutlineTrisshade,
+            EXPERIMENTALRASTER
         }
 
         private void continuousRenderCheckBox_CheckedChanged(object sender, EventArgs e)

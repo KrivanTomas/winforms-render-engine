@@ -7,6 +7,29 @@ using System.Drawing;
 
 namespace WinformRender
 {
+    public class Vector2
+    {
+        public float x;
+        public float y;
+        public Vector2(float x, float y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+        public static Vector2 operator +(Vector2 a) => a;
+        public static Vector2 operator -(Vector2 a) => new Vector2(-a.x, -a.y);
+        public static Vector2 operator +(Vector2 a, Vector2 b) => new Vector2(a.x + b.x, a.y + b.y);
+        public static Vector2 operator -(Vector2 a, Vector2 b) => a + (-b);
+        public static Vector2 operator *(Vector2 a, float b) => new Vector2(a.x * b, a.y * b);
+
+        public static float operator *(Vector2 a, Vector2 b) => a.x * b.x + a.y * b.y;
+        public static Vector2 operator /(Vector2 a, float b) => new Vector2(a.x / b, a.y / b);
+
+        public double Length()
+        {
+            return Math.Sqrt(x * x + y * y);
+        }
+    }
     public class Vector3
     {
         public float x;

@@ -46,7 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastBitmap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FastBitmap.Designer.cs">
+      <DependentUpon>FastBitmap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FastBitmapTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastBitmapTest.Designer.cs">
+      <DependentUpon>FastBitmapTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Matrix.cs" />
+    <Compile Include="RasterShader.cs" />
     <Compile Include="TrisShader.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Vector3.cs" />
