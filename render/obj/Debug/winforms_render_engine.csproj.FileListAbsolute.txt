@@ -18,4 +18,6 @@ G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engi
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.CoreCompileInputs.cache
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.exe
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\render.pdb
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\WinformRender.Views.FastBitmap.resources
+G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\WinformRender.FastBitmapTest.resources
 G:\Dokumenty\GitHub\winforms-render-engine\render\obj\Debug\winforms_render_engine.csproj.AssemblyReference.cache

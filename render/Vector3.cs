@@ -109,12 +109,12 @@ namespace WinformRender
             this.w = w;
         }
 
-        public static Vector4 Zero()
+        public static new Vector4 Zero()
         {
             return new Vector4(0f, 0f, 0f, 0f);
         }
 
-        public static Vector4 One()
+        public static new Vector4 One()
         {
             return new Vector4(1f, 1f, 1f, 1f);
         }

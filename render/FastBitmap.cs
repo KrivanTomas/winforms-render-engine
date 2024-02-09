@@ -1,19 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Forms.Layout;
 
 
 // from https://www.kpsoftwaredev.com/2021/06/winforms-fast-graphics.html
 
 namespace WinformRender.Views
 {
-    public class FastBitmap : PictureBox
+    [ClassInterface(ClassInterfaceType.AutoDispatch)]
+    [ComVisible(true)]
+    [DefaultBindingProperty("Image")]
+    [DefaultProperty("Image")]
+    [Designer("System.Windows.Forms.Design.PictureBoxDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [Docking(DockingBehavior.Ask)]
+    public partial class FastBitmap : PictureBox
     {
         private GCHandle _handle;
         private IntPtr _addr;
-        private UInt32[] _pixels;
+        public UInt32[] _pixels;
+
+        public FastBitmap() : base()
+        {
+        }
+
+        //[Category("Custom")]
+        //[Browsable(true)]
+        //[Description("fast bitmap for rendering")]
+        //[Editor(typeof(System.Windows.Forms.Design.WindowsFormsComponentEditor),typeof(System.Drawing.Design.UITypeEditor))]
 
         protected override void OnResize(EventArgs e)
         {
@@ -35,7 +53,7 @@ namespace WinformRender.Views
             _pixels = new UInt32[width * height];
             _handle = GCHandle.Alloc(_pixels, GCHandleType.Pinned);
             _addr = Marshal.UnsafeAddrOfPinnedArrayElement(_pixels, 0);
-            Image = new Bitmap(width, height, stride, PixelFormat.Format32bppArgb, _addr);
+            base.Image = new Bitmap(width, height, stride, PixelFormat.Format32bppArgb, _addr);
         }
 
         private void Cleanup()

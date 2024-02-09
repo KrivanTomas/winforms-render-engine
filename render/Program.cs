@@ -18,6 +18,7 @@ namespace WinformRender
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DebugWindow());
+            Application.Run(new FastBitmapTest());
         }
     }
 }
