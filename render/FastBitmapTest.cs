@@ -18,10 +18,6 @@ namespace WinformRender
         public FastBitmapTest()
         {
             InitializeComponent();
-            FloatColor ssss = new FloatColor(0xAAFFFFDD);
-            MessageBox.Show(ssss.GetHexValue().ToString());
-            MessageBox.Show(Convert.ToUInt32(ssss.a * 255).ToString());
-            MessageBox.Show(Convert.ToUInt32(ssss.r * 255).ToString());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -34,9 +30,9 @@ namespace WinformRender
 
             SolidBrush sb = new SolidBrush(Color.White);
             SolidBrush sbTest = new SolidBrush(Color.Black);
-            UInt32 test1 = 0xFF000000;
-            UInt32 test2 = 0xFFFFFFFF;
-            FloatColor test3 = new FloatColor(0xFFFFFFFF);
+            FloatColor color = new FloatColor(1,0,1,1);
+            FloatColor color2 = new FloatColor(1,1,0,1);
+            FloatColor color3 = new FloatColor(0,1,1,1);
             double time = (double)DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             float aspect = 500f;
             Vector2 center = new Vector2(canvasSize.x / 2, canvasSize.y / 2);
@@ -44,13 +40,37 @@ namespace WinformRender
             {
                 for (int posY = 0; posY < canvasSize.y; posY++)
                 {
-                    double circle = (new Vector2(posX, posY) - center).Length() - 200 * (Math.Sin(time) + 1) / 2;
+                    double circle = (new Vector2(posX, posY) - center).Length() / canvasSize.y - 0.5 * (Math.Sin(time) + 1) / 2;
+                    //double circle = (new Vector2(posX, posY) - center).Length();
                     circle = Math.Abs(circle);
-                    //fastBitmap1._pixels[posX + posY * width] = circle < 10 ? test2 : test1;
-                    fastBitmap1._pixels[posX + posY * width] = (test3 * smoothstep(0, width, posX)).GetHexValue();
+                    circle = smoothstep(0.0, 0.1, circle);
+                    
+                    if(circle != 0) circle = 0.1 / circle;
+
+                    double circle2 = (new Vector2(posX, posY) - center).Length() / canvasSize.y - 0.5 * (Math.Sin(time + Math.PI * 2 / 3) + 1) / 2;
+                    //double circle = (new Vector2(posX, posY) - center).Length();
+                    circle2 = Math.Abs(circle2);
+                    circle2 = smoothstep(0.0, 0.1, circle2);
+
+                    if (circle2 != 0) circle2 = 0.1 / circle2;
+
+                    double circle3 = (new Vector2(posX, posY) - center).Length() / canvasSize.y - 0.5 * (Math.Sin(time + Math.PI * 4 / 3) + 1) / 2;
+                    //double circle = (new Vector2(posX, posY) - center).Length();
+                    circle3 = Math.Abs(circle3);
+                    circle3 = smoothstep(0.0, 0.1, circle3);
+
+                    if (circle3 != 0) circle3 = 0.1 / circle3;
+
+                    fastBitmap1._pixels[posX + posY * width] = (circle * color + circle2 * color2 + circle3 * color3).GetHexValue();
+                    //fastBitmap1._pixels[posX + posY * width] = (test3 * smoothstep(0, width, posX)).GetHexValue();
                 }
             }
             fastBitmap1.Invalidate();
+        }
+
+        private double step(double at, double value)
+        {
+            return value < at ? 0 : 1;
         }
 
         private double smoothstep(double from, double to, double value)
@@ -87,31 +107,35 @@ namespace WinformRender
         }
 
         public static FloatColor operator *(FloatColor color, double x) {
-            return new FloatColor(color.a, color.r * x, color.g * x, color.b * x);
+            return new FloatColor(color.r * x, color.g * x, color.b * x, color.a);
+        }
+        public static FloatColor operator *(double x, FloatColor color)
+        {
+            return new FloatColor(color.r * x, color.g * x, color.b * x, color.a);
         }
 
         public static FloatColor operator +(FloatColor color, double x)
         {
-            return new FloatColor(color.a, color.r + x, color.g + x, color.b + x);
+            return new FloatColor(color.r + x, color.g + x, color.b + x, color.a);
         }
 
         public static FloatColor operator +(FloatColor cola, FloatColor colb)
         {
-            return new FloatColor(cola.a, cola.r + colb.r, cola.g + colb.g, cola.b + colb.b);
+            return new FloatColor(cola.r + colb.r, cola.g + colb.g, cola.b + colb.b, cola.a);
         }
 
         public static FloatColor operator -(FloatColor cola)
         {
-            return new FloatColor(cola.a, -cola.r, -cola.g, -cola.b);
+            return new FloatColor(-cola.r, -cola.g, -cola.b, cola.a);
         }
 
         public FloatColor Clamp()
         {
             return new FloatColor(
-                (a < 0 ? 0 : (a > 1 ? 1 : a)),
-                (r < 0 ? 0 : (r > 1 ? 1 : r)),
-                (g < 0 ? 0 : (g > 1 ? 1 : g)),
-                (b < 0 ? 0 : (b > 1 ? 1 : b))
+                (r <= 0 ? 0 : (r >= 1 ? 1 : r)),
+                (g <= 0 ? 0 : (g >= 1 ? 1 : g)),
+                (b <= 0 ? 0 : (b >= 1 ? 1 : b)),
+                (a <= 0 ? 0 : (a >= 1 ? 1 : a))
                 );
         }
 
@@ -119,11 +143,11 @@ namespace WinformRender
         {
             FloatColor c = this.Clamp();
             UInt32 hex = 0;
-            
-            hex |= Convert.ToUInt32(c.a * 0xFF) << 24;
-            hex |= Convert.ToUInt32(c.r * 0xFF) << 16;
-            hex |= Convert.ToUInt32(c.g * 0xFF) << 8;
-            hex |= Convert.ToUInt32(c.b * 0xFF) << 0;
+
+            hex |= Convert.ToUInt32(c.a * 0xFF) << (6 * 4);
+            hex |= Convert.ToUInt32(c.r * 0xFF) << (4 * 4);
+            hex |= Convert.ToUInt32(c.g * 0xFF) << (2 * 4);
+            hex |= Convert.ToUInt32(c.b * 0xFF);
             return hex;
         }
 
